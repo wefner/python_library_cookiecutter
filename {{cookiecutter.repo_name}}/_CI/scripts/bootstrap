@@ -1,22 +1,23 @@
 #!/bin/bash
 cd $(dirname $0)/../..
 
+export WORKON_HOME=$(pwd)
+
 source $(which virtualenvwrapper.sh)
-
-[ -z "$WORKON_HOME" ] && WORKON_HOME=$HOME/.virtualenvs
-
-if (! test -d "$WORKON_HOME/{{ cookiecutter.repo_name }}")
+if [ $? != 0 ]
 then
-  echo "Creating virtual env for {{ cookiecutter.repo_name }}"
-  if (! mkvirtualenv "{{ cookiecutter.repo_name }}" )
-  then
-    echo "Missing prerequisite virtualenvwrapper, bailing out"
-    exit 1
-  fi
+  echo "Missing prerequisite virtualenvwrapper, bailing out"
+  exit 1
+fi
+
+if (! test -d "$WORKON_HOME/.{{ cookiecutter.repo_name }}")
+then
+  echo "Creating virtual env for .{{ cookiecutter.repo_name }}"
+  mkvirtualenv ".{{ cookiecutter.repo_name }}"
 fi
 
 echo "Working on virtualenv {{ cookiecutter.repo_name }}"
-source "$WORKON_HOME/{{ cookiecutter.repo_name }}/bin/activate"
+source "$WORKON_HOME/.{{ cookiecutter.repo_name }}/bin/activate"
 
 echo "Installing python package requirements.."
 pip install -r requirements.txt
