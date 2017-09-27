@@ -5,10 +5,11 @@ include HISTORY.rst
 include LICENSE
 include README.rst
 include USAGE.rst
+include Pipfile
+include Pipfile.lock
 include requirements.txt
+include dev-requirements.txt
 include {{cookiecutter.repo_name}}/.VERSION
-recursive-include requirements *.txt
-
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]

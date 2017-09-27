@@ -1,23 +1,19 @@
 #!/bin/bash
 cd $(dirname $0)/../..
 
-export WORKON_HOME=$(pwd)
+export PIPENV_VENV_IN_PROJECT=true
 
-source $(which virtualenvwrapper.sh)
+which pipenv
 if [ $? != 0 ]
 then
-  echo "Missing prerequisite virtualenvwrapper, bailing out"
+  echo "Missing prerequisite pipenv, bailing out"
   exit 1
 fi
 
-if (! test -d "$WORKON_HOME/.{{ cookiecutter.repo_name }}")
+
+pipenv --venv
+if [ $? != 0 ]
 then
-  echo "Creating virtual env for .{{ cookiecutter.repo_name }}"
-  mkvirtualenv ".{{ cookiecutter.repo_name }}"
+  echo "Creating virtualenv for {{ cookiecutter.repo_name }}"
+  pipenv install --dev
 fi
-
-echo "Working on virtualenv {{ cookiecutter.repo_name }}"
-source "$WORKON_HOME/.{{ cookiecutter.repo_name }}/bin/activate"
-
-echo "Installing python package requirements.."
-pip install -r requirements.txt

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
 # {{ cookiecutter.repo_name }} documentation build configuration file, created by
-# sphinx-quickstart on Tue Jul  9 22:26:36 2013.
+# sphinx-quickstart
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
