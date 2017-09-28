@@ -11,6 +11,5 @@
   "documentation_url": "https://{{ cookiecutter.repo_name }}.readthedocs.org/en/latest",
   "release_date": "DD-MM-YYYY",
   "year": "YYYY",
-  "license": "Copyright (c) {{ cookiecutter.year }}, ({{ cookiecutter.full_name }}). All rights reserved.",
-  "foss_license": "MIT"
+  "license": ["MIT", "BSD-3", "GNU GPL v3.0", "Apache Software License 2.0"]
 }
