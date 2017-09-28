@@ -9,7 +9,8 @@
   "package_type": "egg",
   "compatibility": "python",
   "documentation_url": "https://{{ cookiecutter.repo_name }}.readthedocs.org/en/latest",
-  "release_date": "DD-MM-YYYY",
-  "year": "YYYY",
-  "license": ["MIT", "BSD-3", "GNU GPL v3.0", "Apache Software License 2.0"]
+  "release_date": "{% now 'local' %}",
+  "year": "{% now 'utc', '%Y' %}",
+  "license": ["MIT", "BSD-3", "GNU GPL v3.0", "Apache Software License 2.0"],
+  "_extensions": ["jinja2_time.TimeExtension"]
 }

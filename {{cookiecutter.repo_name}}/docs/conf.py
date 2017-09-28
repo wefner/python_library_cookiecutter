@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 #
 # {{ cookiecutter.repo_name }} documentation build configuration file, created by
 # sphinx-quickstart
@@ -61,7 +61,8 @@ import {{ cookiecutter.repo_name }}
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'sphinx.ext.todo'
 ]
 
 napoleon_google_docstring = True
