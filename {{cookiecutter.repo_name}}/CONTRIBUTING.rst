@@ -20,7 +20,7 @@ Ready to contribute? Here's how to set up `{{ cookiecutter.repo_name }}` for loc
 
 1. Clone your fork locally::
 
-    $ git clone git@{{ cookiecutter.repo_name }}
+    $ git clone {{ cookiecutter.git_url }}
 
 2. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your clone for local development::
 

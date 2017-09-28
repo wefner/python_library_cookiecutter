@@ -1,26 +1,42 @@
 #!/bin/bash --login
-set -e
+# we want all these files to exist in the actual package
+required_files=(".VERSION" "LICENSE" "AUTHORS.rst" "CONTRIBUTING.rst" "HISTORY.rst" "README.rst" "USAGE.rst" "Pipfile" "Pipfile.lock" "requirements.txt" "dev-requirements.txt")
+
 cd $(dirname $0)/../..
 
 . _CI/scripts/bootstrap
+set -e
 
+# cleaning up directories if exist
 rm -rf build dist
 
-# we want all these files to exist in the actual package
-cp .VERSION {{cookiecutter.repo_name}}/.VERSION
-cp LICENSE {{cookiecutter.repo_name}}/LICENSE
-cp AUTHORS.rst {{cookiecutter.repo_name}}/AUTHORS.rst
-cp CONTRIBUTING.rst {{cookiecutter.repo_name}}/CONTRIBUTING.rst
-cp HISTORY.rst {{cookiecutter.repo_name}}/HISTORY.rst
-cp README.rst {{cookiecutter.repo_name}}/README.rst
-cp USAGE.rst {{cookiecutter.repo_name}}/USAGE.rst
+echo "Locking requirements to create up to date files"
+pipenv lock
 
+echo "Creating requiremens.txt"
+./_CI/bin/create_requirements.py default
+
+echo "Creating dev-requiremens.txt"
+./_CI/bin/create_requirements.py develop
+
+
+# copy files in the structure
+for file in "${required_files[@]}"
+    do
+        cp $file {{cookiecutter.repo_name}}/$file
+    done
+
+# package
 python setup.py sdist bdist_egg
 
-rm {{cookiecutter.repo_name}}/.VERSION
-rm {{cookiecutter.repo_name}}/LICENSE
-rm {{cookiecutter.repo_name}}/AUTHORS.rst
-rm {{cookiecutter.repo_name}}/CONTRIBUTING.rst
-rm {{cookiecutter.repo_name}}/HISTORY.rst
-rm {{cookiecutter.repo_name}}/README.rst
-rm {{cookiecutter.repo_name}}/USAGE.rst
+# remove files from the structure
+for file in "${required_files[@]}"
+    do
+        rm {{cookiecutter.repo_name}}/$file
+    done
+
+echo "Removing requiremens.txt"
+rm requirements.txt
+
+echo "Removing dev-requiremens.txt"
+rm dev-requirements.txt
