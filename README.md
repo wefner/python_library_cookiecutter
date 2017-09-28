@@ -48,7 +48,6 @@ These actions are supported out of the box by the corresponding scripts under _C
 The following aliases will be very handy on bash
 
     $ alias _bootstrap='_CI/scripts/bootstrap'
-    $ alias _update='_CI/scripts/update'
     $ alias _lint='_CI/scripts/lint'
     $ alias _test='_CI/scripts/test'
     $ alias _build='_CI/scripts/build'
