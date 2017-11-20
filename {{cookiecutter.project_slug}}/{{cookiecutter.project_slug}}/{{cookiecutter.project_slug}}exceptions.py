@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# File: {{cookiecutter.repo_name}}.py
+# File: {{cookiecutter.project_slug}}exceptions.py
 {% if cookiecutter.license == "MIT" -%}
 #
 # Copyright {{ cookiecutter.year }} {{ cookiecutter.full_name }}
@@ -87,14 +87,12 @@
 #
 {% endif %}
 """
-Main code for {{cookiecutter.repo_name}}
+Custom exception code for {{cookiecutter.project_slug}}
 
 .. _Google Python Style Guide:
    http://google.github.io/styleguide/pyguide.html
 
 """
-
-import logging
 
 __author__ = '''{{cookiecutter.full_name}} <{{cookiecutter.email}}>'''
 __docformat__ = '''google'''
@@ -105,9 +103,3 @@ __license__ = '''{{cookiecutter.license}}'''
 __maintainer__ = '''{{cookiecutter.full_name}}'''
 __email__ = '''<{{cookiecutter.email}}>'''
 __status__ = '''Development'''  # "Prototype", "Development", "Production".
-
-
-# This is the main prefix used for logging
-LOGGER_BASENAME = '''{{cookiecutter.repo_name}}'''
-LOGGER = logging.getLogger(LOGGER_BASENAME)
-LOGGER.addHandler(logging.NullHandler())

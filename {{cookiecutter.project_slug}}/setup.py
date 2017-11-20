@@ -23,10 +23,16 @@ except ImportError:
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 version = open('.VERSION').read()
-
+{% set DEVELOPMENT_STATUS = ["Planning",
+                             "Pre-Alpha",
+                             "Alpha",
+                             "Beta",
+                             "Production/Stable",
+                             "Mature",
+                             "Inactive"] %}
 
 setup(
-    name='''{{ cookiecutter.repo_name }}''',
+    name='''{{ cookiecutter.project_slug }}''',
     version=version,
     description='''{{ cookiecutter.project_short_description }}''',
     long_description=readme + '\n\n' + history,
@@ -34,35 +40,34 @@ setup(
     author_email='''{{ cookiecutter.email }}''',
     url='''{{ cookiecutter.git_url }}''',
     packages=find_packages(where='.', exclude=('tests', 'hooks')),
-    package_dir={'''{{ cookiecutter.repo_name }}''':
-                 '''{{ cookiecutter.repo_name }}'''},
+    package_dir={'''{{ cookiecutter.project_slug }}''':
+                 '''{{ cookiecutter.project_slug }}'''},
     include_package_data=True,
     install_requires=requirements,
-    license='''{{ cookiecutter.license }}''',
+    license='{{ cookiecutter.license }}',
     zip_safe=False,
-    keywords='''{{ cookiecutter.repo_name }}''',
+    keywords='''{{ cookiecutter.project_slug }}{% for tag in cookiecutter.tags.split(',') %} {{ tag|trim }}{% endfor %}''',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: {{ DEVELOPMENT_STATUS.index(cookiecutter.development_status) + 1 }} - {{ cookiecutter.development_status }}',
         'Intended Audience :: Developers',
-        '''License :: OSI Approved :: {{ cookiecutter.license }} License''',
+        'License :: OSI Approved :: {{ cookiecutter.license }} License',
         'Natural Language :: English',
-        'Programming Language :: Python',
+        {% for version in cookiecutter.compatible_versions.split(',') -%}
+            'Programming Language :: Python :: {{ version|trim }}',
+        {% endfor -%}
     ],
     test_suite='tests',
     tests_require=test_requirements,
-    data_files=[
-        ('', [
-            '.VERSION',
-            'LICENSE',
-            'AUTHORS.rst',
-            'CONTRIBUTING.rst',
-            'HISTORY.rst',
-            'README.rst',
-            'USAGE.rst',
-            'Pipfile',
-            'Pipfile.lock',
-            'requirements.txt',
-            'dev-requirements.txt'
-        ]),
-    ]
+    data_files=[ ('', ['.VERSION',
+                       'LICENSE',
+                       'AUTHORS.rst',
+                       'CONTRIBUTING.rst',
+                       'HISTORY.rst',
+                       'README.rst',
+                       'USAGE.rst',
+                       'Pipfile',
+                       'Pipfile.lock',
+                       'requirements.txt',
+                       'dev-requirements.txt']),
+                ]
 )

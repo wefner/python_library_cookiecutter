@@ -6,6 +6,16 @@ from pipenv.project import Project
 from collections import namedtuple
 
 Package = namedtuple('Package', ['name', 'version'])
+HEADER = """# 
+# Please do not manually update this file since the requirements are managed
+# by pipenv through Pipfile and Pipfile.lock . 
+#
+# This file is created and managed automatically by the template and it is left
+# here only for backwards compatibility reasons with python's ecosystem.
+#
+# Please use Pipfile to update the requirements.
+#
+"""
 
 
 def get_top_level_dependencies(package_type):
@@ -27,13 +37,17 @@ def validate_package_type(package_type):
 
 
 if __name__ == '__main__':
-    _type = sys.argv[1].lower()
+    try:
+        _type = sys.argv[1].lower()
+    except IndexError:
+        print('Please supply arguments, either "default" or "develop"')
+        raise SystemExit(-1)
     top_level_dependencies = get_top_level_dependencies(_type)
     packages = get_packages(_type)
     packages = [package for package in packages
                 if package.name in top_level_dependencies]
     ofile = 'requirements.txt' if _type == 'default' else 'dev-requirements.txt'
     with open(ofile, 'w') as f:
-        f.write('\n'.join(['{}{}'.format(package.name, package.version)
-                           for package in packages]))
+        f.write(HEADER + '\n'.join(['{}{}'.format(package.name, package.version)
+                                    for package in packages]))
 

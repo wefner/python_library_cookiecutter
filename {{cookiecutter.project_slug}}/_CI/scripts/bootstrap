@@ -14,6 +14,6 @@ fi
 pipenv --venv
 if [ $? != 0 ]
 then
-  echo "Creating virtualenv for {{ cookiecutter.repo_name }}"
+  echo "Creating virtualenv for {{ cookiecutter.project_slug }}"
   pipenv install --dev
 fi

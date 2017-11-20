@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# File: {{cookiecutter.repo_name}}exceptions.py
+# File: test_{{cookiecutter.project_slug}}.py
 {% if cookiecutter.license == "MIT" -%}
 #
 # Copyright {{ cookiecutter.year }} {{ cookiecutter.full_name }}
@@ -87,12 +87,16 @@
 #
 {% endif %}
 """
-Custom exception code for {{cookiecutter.repo_name}}
+test_{{ cookiecutter.project_slug }}
+----------------------------------
+Tests for `{{ cookiecutter.project_slug }}` module.
 
 .. _Google Python Style Guide:
    http://google.github.io/styleguide/pyguide.html
 
 """
+
+from betamax.fixtures import unittest
 
 __author__ = '''{{cookiecutter.full_name}} <{{cookiecutter.email}}>'''
 __docformat__ = '''google'''
@@ -103,3 +107,22 @@ __license__ = '''{{cookiecutter.license}}'''
 __maintainer__ = '''{{cookiecutter.full_name}}'''
 __email__ = '''<{{cookiecutter.email}}>'''
 __status__ = '''Development'''  # "Prototype", "Development", "Production".
+
+
+class Test{{ cookiecutter.project_slug|capitalize }}(unittest.BetamaxTestCase):
+
+    def setUp(self):
+        """
+        Test set up
+
+        This is where you can setup things that you use throughout the tests. This method is called before every test.
+        """
+        pass
+
+    def tearDown(self):
+        """
+        Test tear down
+
+        This is where you should tear down what you've setup in setUp before. This method is called after every test.
+        """
+        pass

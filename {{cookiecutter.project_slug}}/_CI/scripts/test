@@ -24,7 +24,4 @@ open test-output/coverage/index.html 2> /dev/null|| xdg-open test-output/coverag
 sleep 1
 open test-output/nosetests.html 2> /dev/null|| xdg-open test-output/nosetests.html &
 
-# cleaning up from requirements files
-rm requirements.txt
-rm dev-requirements.txt
 exit $exit_code

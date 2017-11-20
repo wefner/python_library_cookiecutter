@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# File: test_{{cookiecutter.repo_name}}.py
+# File: __init__.py
 {% if cookiecutter.license == "MIT" -%}
 #
 # Copyright {{ cookiecutter.year }} {{ cookiecutter.full_name }}
@@ -87,42 +87,23 @@
 #
 {% endif %}
 """
-test_{{ cookiecutter.repo_name }}
-----------------------------------
-Tests for `{{ cookiecutter.repo_name }}` module.
+{{cookiecutter.project_slug}} package
+
+Import all parts from {{cookiecutter.project_slug}} here
 
 .. _Google Python Style Guide:
    http://google.github.io/styleguide/pyguide.html
-
 """
-
-from betamax.fixtures import unittest
+from ._version import __version__
 
 __author__ = '''{{cookiecutter.full_name}} <{{cookiecutter.email}}>'''
 __docformat__ = '''google'''
 __date__ = '''{{cookiecutter.release_date}}'''
 __copyright__ = '''Copyright {{ cookiecutter.year }}, {{ cookiecutter.full_name }}'''
-__credits__ = ["{{cookiecutter.full_name}}"]
 __license__ = '''{{cookiecutter.license}}'''
 __maintainer__ = '''{{cookiecutter.full_name}}'''
 __email__ = '''<{{cookiecutter.email}}>'''
 __status__ = '''Development'''  # "Prototype", "Development", "Production".
 
-
-class Test{{ cookiecutter.repo_name|capitalize }}(unittest.BetamaxTestCase):
-
-    def setUp(self):
-        """
-        Test set up
-
-        This is where you can setup things that you use throughout the tests. This method is called before every test.
-        """
-        pass
-
-    def tearDown(self):
-        """
-        Test tear down
-
-        This is where you should tear down what you've setup in setUp before. This method is called after every test.
-        """
-        pass
+# This is to 'use' the module(s), so lint doesn't complain
+assert __version__

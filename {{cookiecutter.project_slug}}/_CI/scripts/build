@@ -13,28 +13,24 @@ rm -rf build dist
 echo "Locking requirements to create up to date files"
 pipenv lock
 
-echo "Creating requirements.txt"
+echo "Creating requiremens.txt"
 ./_CI/bin/create_requirements.py default
 
-echo "Creating dev-requirements.txt"
+echo "Creating dev-requiremens.txt"
 ./_CI/bin/create_requirements.py develop
 
 
 # copy files in the structure
 for file in "${required_files[@]}"
     do
-        cp $file {{cookiecutter.repo_name}}/$file
+        cp $file {{cookiecutter.project_slug}}/$file
     done
 
-# package and upload
-python setup.py sdist bdist_egg  upload -r pypi
+# package
+python setup.py sdist bdist_egg
 
 # remove files from the structure
 for file in "${required_files[@]}"
     do
-        rm {{cookiecutter.repo_name}}/$file
+        rm {{cookiecutter.project_slug}}/$file
     done
-
-echo "Removing dev-requirements.txt"
-rm dev-requirements.txt
-

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# File: __init__.py
+# File: {{cookiecutter.project_slug}}.py
 {% if cookiecutter.license == "MIT" -%}
 #
 # Copyright {{ cookiecutter.year }} {{ cookiecutter.full_name }}
@@ -87,23 +87,27 @@
 #
 {% endif %}
 """
-{{cookiecutter.repo_name}} package
-
-Import all parts from {{cookiecutter.repo_name}} here
+Main code for {{cookiecutter.project_slug}}
 
 .. _Google Python Style Guide:
    http://google.github.io/styleguide/pyguide.html
+
 """
-from ._version import __version__
+
+import logging
 
 __author__ = '''{{cookiecutter.full_name}} <{{cookiecutter.email}}>'''
 __docformat__ = '''google'''
 __date__ = '''{{cookiecutter.release_date}}'''
 __copyright__ = '''Copyright {{ cookiecutter.year }}, {{ cookiecutter.full_name }}'''
+__credits__ = ["{{cookiecutter.full_name}}"]
 __license__ = '''{{cookiecutter.license}}'''
 __maintainer__ = '''{{cookiecutter.full_name}}'''
 __email__ = '''<{{cookiecutter.email}}>'''
 __status__ = '''Development'''  # "Prototype", "Development", "Production".
 
-# This is to 'use' the module(s), so lint doesn't complain
-assert __version__
+
+# This is the main prefix used for logging
+LOGGER_BASENAME = '''{{cookiecutter.project_slug}}'''
+LOGGER = logging.getLogger(LOGGER_BASENAME)
+LOGGER.addHandler(logging.NullHandler())

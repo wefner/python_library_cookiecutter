@@ -16,7 +16,7 @@ If you are proposing a feature:
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `{{ cookiecutter.repo_name }}` for local development.
+Ready to contribute? Here's how to set up `{{ cookiecutter.project_slug }}` for local development.
 
 1. Clone your fork locally::
 
@@ -24,8 +24,8 @@ Ready to contribute? Here's how to set up `{{ cookiecutter.repo_name }}` for loc
 
 2. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your clone for local development::
 
-    $ mkvirtualenv {{ cookiecutter.repo_name }}
-    $ cd {{ cookiecutter.repo_name }}/
+    $ mkvirtualenv {{ cookiecutter.project_slug }}
+    $ cd {{ cookiecutter.project_slug }}/
     $ python setup.py develop
 
 3. Create a branch for local development::

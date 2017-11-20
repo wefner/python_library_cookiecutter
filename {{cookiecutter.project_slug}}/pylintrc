@@ -3,4 +3,4 @@ max-line-length=121
 disable=locally-disabled, locally-enabled, logging-format-interpolation
 
 [General]
-init-hook='import sys; sys.path.append("{{ cookiecutter.repo_name }}")'
+init-hook='import sys; sys.path.append("{{ cookiecutter.project_slug }}")'

@@ -1,5 +1,5 @@
 ============================
-{{ cookiecutter.repo_name }}
+{{ cookiecutter.project_slug }}
 ============================
 
 {{ cookiecutter.project_short_description}}
