@@ -49,6 +49,7 @@ docs/_build
 # VirtualEnv
 env
 env*
+.venv
 
 # Mac
 .DS_Store
