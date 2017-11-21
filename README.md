@@ -63,7 +63,7 @@ The bootstrap script creates a .{{cookiecutter.project_slug}} directory inside t
 It is called by all other scripts before they do anything. So one could simple start by calling _lint and that would set up everything before it tried to actually lint the project
 
 Once the code is ready to be delivered the _tag script should be called accepting one of three arguments, patch, minor, major following the semantic versioning scheme.
-So for the initial delivery one would cal
+So for the initial delivery one would call
 
     $ _tag minor
     
