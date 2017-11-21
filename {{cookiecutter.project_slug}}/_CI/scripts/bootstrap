@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash --login
 cd $(dirname $0)/../..
 
 export PIPENV_VENV_IN_PROJECT=true

@@ -3,17 +3,17 @@ cd $(dirname $0)/../..
 
 . ./_CI/scripts/bootstrap
 
-# cleaing up the directory
+# cleaning up the directory
 rm -rf test-output
 mkdir -p test-output
 
 echo "Locking requirements to create up to date files"
 pipenv lock
 
-echo "Creating requiremens.txt"
+echo "Creating requirements.txt"
 ./_CI/bin/create_requirements.py default
 
-echo "Creating dev-requiremens.txt"
+echo "Creating dev-requirements.txt"
 ./_CI/bin/create_requirements.py develop
 
 # we run tox

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash --login
 cd $(dirname $0)/../..
 set -e
 
@@ -27,4 +27,3 @@ case "$1" in
         echo "If you don't supply any arguments, this will return the version"
         ;;
 esac
-

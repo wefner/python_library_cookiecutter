@@ -132,19 +132,23 @@ def bump_major(version):
     verinfo = parse(version)
     return format_version(verinfo['major'] + 1, 0, 0)
 
+
 def bump_minor(version):
     verinfo = parse(version)
     return format_version(verinfo['major'], verinfo['minor'] + 1, 0)
 
+
 def bump_patch(version):
     verinfo = parse(version)
     return format_version(verinfo['major'], verinfo['minor'], verinfo['patch'] + 1)
+
 
 def bump_prerelease(version):
     verinfo = parse(version)
     verinfo['prerelease'] = _increment_string(verinfo['prerelease'] or 'rc.0')
     return format_version(verinfo['major'], verinfo['minor'], verinfo['patch'],
                           verinfo['prerelease'])
+
 
 def bump_build(version):
     verinfo = parse(version)

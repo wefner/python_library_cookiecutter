@@ -97,15 +97,14 @@ def main():
     try:
         version_text = open(version_path).read().strip()
     except Exception:
-        print ('Could not open or read the .VERSION file')
+        print('Could not open or read the .VERSION file')
         sys.exit(1)
 
     try:
         semver.parse(version_text)
     except ValueError:
-        print ('The .VERSION file contains an invalid version: "{0}"'.format(
-            version_text
-        ))
+        print(('The .VERSION file contains an invalid '
+               'version: "{}"').format(version_text))
         sys.exit(1)
 
     new_version = version_text
@@ -114,9 +113,7 @@ def main():
             if semver.parse(args.version):
                 new_version = args.version
         except Exception:
-            print ('Could not parse "{0}" as a version'.format(
-                args.version
-            ))
+            print('Could not parse "{}" as a version'.format(args.version))
             sys.exit(1)
     elif args.bump_major:
         new_version = semver.bump_major(version_text)
@@ -129,9 +126,10 @@ def main():
         with open(version_path, 'w') as version_file:
             version_file.write(new_version)
     except Exception:
-        print ('Could not write the .VERSION file')
+        print('Could not write the .VERSION file')
         sys.exit(1)
-    print new_version
+    print(new_version)
+
 
 if __name__ == '__main__':
     main()

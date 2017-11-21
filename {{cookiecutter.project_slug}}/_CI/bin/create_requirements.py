@@ -6,6 +6,7 @@ from pipenv.project import Project
 from collections import namedtuple
 
 Package = namedtuple('Package', ['name', 'version'])
+
 HEADER = """# 
 # Please do not manually update this file since the requirements are managed
 # by pipenv through Pipfile and Pipfile.lock . 
