@@ -59,7 +59,7 @@ The following aliases will be very handy on bash
     $ alias _tag='_CI/scripts/tag'
     $ alias _graph='_CI/scripts/graph'
     
-The bootstrap script creates a .venv directory inside the project directory hosting the virtual environment.
+The bootstrap script creates a .{{cookiecutter.project_slug}} directory inside the project directory hosting the virtual environment.
 It is called by all other scripts before they do anything. So one could simple start by calling _lint and that would set up everything before it tried to actually lint the project
 
 Once the code is ready to be delivered the _tag script should be called accepting one of three arguments, patch, minor, major following the semantic versioning scheme.
