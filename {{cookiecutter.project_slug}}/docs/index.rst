@@ -4,7 +4,8 @@
    contain the root `toctree` directive.
 
 Welcome to {{ cookiecutter.project_slug }}'s documentation!
-===========================================================
+{% set UNDERLINE = '=' * (cookiecutter.project_slug|length + 28) -%}
+{{ UNDERLINE }}
 
 Contents:
 

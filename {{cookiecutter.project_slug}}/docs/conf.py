@@ -32,18 +32,6 @@ import sphinx.apidoc
 sphinx.apidoc.main(argv=['_','-f', '-o', os.path.join(project_root, 'docs'),
                    os.path.join(project_root, '''{{ cookiecutter.project_slug }}''')])
 
-# parse the index.rst and fix the title underlining
-with open(os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                       'index.rst'), 'r+') as index_rst_file:
-    index_rst = index_rst_file.read()
-    index_rst_file.seek(0, 0)
-    for line in index_rst.splitlines():
-        if line.startswith('Welcome to '):
-            line_length = len(line.strip())
-        if line.startswith('======================================'):
-            line = '=' * line_length
-        index_rst_file.write(line + '\n')
-
 # Insert the project root dir as the first element in the PYTHONPATH.
 # This lets us ensure that the source package is imported, and that its
 # version is used.

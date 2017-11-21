@@ -12,6 +12,7 @@ Remember, when creating a library with this template, to:
   * Write inline documentation to describe your classes and methods
   * Populate the readme (./README.rst)
   * Write (a) usage example(s) (./USAGE.rst)
+  * Write proper installation instructions (./INSTALLATION.rst)
   * Keep a (global) changelog in ./HISTORY.rst
 
 
@@ -54,6 +55,7 @@ The following aliases will be very handy on bash
     $ alias _upload='_CI/scripts/upload'
     $ alias _document='_CI/scripts/document'
     $ alias _tag='_CI/scripts/tag'
+    $ alias _graph='_CI/scripts/graph'
     $ alias _activate='pipenv shell'
     
 The bootstrap script creates a .venv directory inside the project directory hosting the virtual environment. It uses pipenv for that.
