@@ -1,0 +1,26 @@
+#!/bin/bash
+cd $(dirname $0)/../..
+
+export WORKON_HOME=$(pwd)
+
+source $(which virtualenvwrapper.sh)
+if [ $? != 0 ]
+then
+  echo "Missing prerequisite virtualenvwrapper, bailing out"
+  exit 1
+fi
+
+if (! test -d "$WORKON_HOME/.{{ cookiecutter.project_slug }}")
+then
+  echo "Creating virtual env for .{{ cookiecutter.project_slug }}"
+  mkvirtualenv ".{{ cookiecutter.project_slug }}"
+fi
+
+echo "Working on virtualenv {{ cookiecutter.project_slug }}"
+source "$WORKON_HOME/.{{ cookiecutter.project_slug }}/bin/activate"
+
+echo "Installing python package requirements.."
+pip install -r requirements.txt 1> /dev/null
+
+echo "Installing python package development requirements.."
+pip install -r dev-requirements.txt 1> /dev/null

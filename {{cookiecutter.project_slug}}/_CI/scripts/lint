@@ -1,0 +1,7 @@
+#!/bin/bash --login
+set -e
+cd $(dirname $0)/../..
+
+. _CI/scripts/bootstrap
+
+prospector -DFM && echo No issues found
