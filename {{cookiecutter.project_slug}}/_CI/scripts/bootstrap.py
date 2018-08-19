@@ -18,7 +18,8 @@ from library import (setup_logging,
                      execute_command,
                      load_environment_variables,
                      load_dot_env_file,
-                     activate_virtual_environment)
+                     activate_virtual_environment,
+                     get_emojize)
 
 # This is the main prefix used for logging
 LOGGER_BASENAME = '''_CI.bootstrap'''
@@ -38,12 +39,14 @@ def bootstrap():
         exit_code = execute_command('pipenv install --dev --ignore-pipfile')
         success = not exit_code
         if success:
-            LOGGER.info('Successfully created virtual environment, loading it! ;)')
             activate_virtual_environment()
+            emojize = get_emojize()
+            LOGGER.info('Successfully created virtual environment, loading it! %s', emojize(':thumbs_up:'))
         else:
             LOGGER.error('Creation of virtual environment failed, cannot continue, '
                          'please clean up .venv directory and try again...')
             raise SystemExit(1)
+    return get_emojize()
 
 
 if __name__ == '__main__':

@@ -33,7 +33,7 @@ LOGGER.addHandler(logging.NullHandler())
 
 
 def graph():
-    bootstrap()
+    emojize = bootstrap()
     os.chdir('graphs')
     create_graph_command = ('pyreverse '
                             '-o png '
@@ -43,9 +43,9 @@ def graph():
     exit_code = execute_command(create_graph_command)
     success = not exit_code
     if success:
-        LOGGER.info('Successfully created graph images ;)')
+        LOGGER.info('Successfully created graph images %s', emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Errors in creation of graph images found! :(')
+        LOGGER.error('Errors in creation of graph images found! %s', emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 

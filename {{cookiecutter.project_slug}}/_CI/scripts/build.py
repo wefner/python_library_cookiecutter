@@ -36,14 +36,14 @@ LOGGER.addHandler(logging.NullHandler())
 
 
 def build():
-    bootstrap()
+    emojize = bootstrap()
     clean_up(('build', 'dist'))
     exit_code = execute_command('pipenv lock')
     success = not exit_code
     if success:
-        LOGGER.info('Successfully created lock file ;)')
+        LOGGER.info('Successfully created lock file %s', emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Errors creating lock file! :(')
+        LOGGER.error('Errors creating lock file! %s', emojize(':crying_face:'))
         raise SystemExit(1)
     save_requirements()
     for file in BUILD_REQUIRED_FILES:
@@ -51,12 +51,12 @@ def build():
     exit_code = execute_command('python setup.py sdist bdist_egg')
     success = not exit_code
     if success:
-        LOGGER.info('Successfully built artifact ;)')
+        LOGGER.info('Successfully built artifact %s', emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Errors building artifact! :(')
+        LOGGER.error('Errors building artifact! %s', emojize(':crying_face:'))
     clean_up([os.path.join('{{cookiecutter.project_slug}}', file)
               for file in BUILD_REQUIRED_FILES])
-    return success
+    return emojize if success else None
 
 
 if __name__ == '__main__':

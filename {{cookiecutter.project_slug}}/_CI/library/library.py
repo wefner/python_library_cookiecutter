@@ -66,6 +66,10 @@ def is_venv_created():
     return True if venv else False
 
 
+def is_venv_active():
+    return hasattr(sys, 'real_prefix')
+
+
 def get_project_root_path():
     current_file_path = os.path.dirname(os.path.abspath(__file__))
     return os.path.abspath(os.path.join(current_file_path, '..', '..'))
@@ -79,8 +83,9 @@ def activate_virtual_environment():
         with open(activation_file) as f:
             exec(f.read(), {'__file__': activation_file})
 
-
-activate_virtual_environment()
+# After this everything is executed inside a virtual environment
+if not is_venv_active():
+    activate_virtual_environment()
 
 
 try:
@@ -90,7 +95,13 @@ except ImportError:
     colored_logs = False
 
 
-import semver
+if is_venv_active():
+    import semver
+
+
+def get_emojize():
+    from emoji import emojize
+    return emojize
 
 
 def setup_logging(level):

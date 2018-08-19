@@ -21,7 +21,7 @@
 #  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #  DEALINGS IN THE SOFTWARE.
 #
-import os
+
 from .library import (execute_command,
                       setup_logging,
                       get_project_root_path,
@@ -33,4 +33,5 @@ from .library import (execute_command,
                       save_requirements,
                       open_file,
                       bump,
-                      activate_virtual_environment)
+                      activate_virtual_environment,
+                      get_emojize)

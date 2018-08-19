@@ -34,7 +34,7 @@ LOGGER.addHandler(logging.NullHandler())
 
 
 def document():
-    bootstrap()
+    emojize = bootstrap()
     clean_up(('_build',
               os.path.join('docs', '_build'),
               os.path.join('docs', 'test_docs.rst'),
@@ -45,9 +45,9 @@ def document():
         shutil.move(os.path.join('docs', '_build'), '_build')
         path = os.path.join('_build', 'html', 'index.html')
         open_file(path)
-        LOGGER.info('Successfully built documentation ;)')
+        LOGGER.info('Successfully built documentation %s', emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Documentation creation errors found! :(')
+        LOGGER.error('Documentation creation errors found! %s', emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 

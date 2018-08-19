@@ -39,15 +39,15 @@ LOGGER.addHandler(logging.NullHandler())
 
 
 def test():
-    bootstrap()
+    emojize = bootstrap()
     clean_up('test-output')
     os.mkdir('test-output')
     exit_code = execute_command('pipenv lock')
     success = not exit_code
     if success:
-        LOGGER.info('Successfully locked dependencies ;)')
+        LOGGER.info('Successfully locked dependencies %s', emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Could not lock dependencies, quiting... :(')
+        LOGGER.error('Could not lock dependencies, quiting... %s', emojize(':crying_face:'))
         raise SystemExit(1)
     save_requirements()
     exit_code = execute_command('tox')
@@ -56,9 +56,9 @@ def test():
         open_file(os.path.join('test-output', 'coverage', 'index.html'))
         sleep(0.5)
         open_file(os.path.join('test-output', 'nosetests.html'))
-        LOGGER.info('No testing errors found! ;)')
+        LOGGER.info('No testing errors found! %s', emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Testing errors found! :(')
+        LOGGER.error('Testing errors found! %s', emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 

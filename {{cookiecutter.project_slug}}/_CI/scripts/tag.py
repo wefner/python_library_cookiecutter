@@ -63,7 +63,7 @@ def get_arguments():
 
 
 def tag():
-    bootstrap()
+    emojize = bootstrap()
     args = get_arguments()
     check_branch()
     if args.major:

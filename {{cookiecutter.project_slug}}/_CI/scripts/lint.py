@@ -25,6 +25,7 @@ import logging
 from bootstrap import bootstrap
 from library import execute_command
 
+
 # This is the main prefix used for logging
 LOGGER_BASENAME = '''_CI.lint'''
 LOGGER = logging.getLogger(LOGGER_BASENAME)
@@ -32,13 +33,13 @@ LOGGER.addHandler(logging.NullHandler())
 
 
 def lint():
-    bootstrap()
+    emojize = bootstrap()
     exit_code = execute_command('prospector -DFM')
     success = not exit_code
     if success:
-        LOGGER.info('No linting errors found! ;)')
+        LOGGER.info('No linting errors found! %s', emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Linting errors found! :(')
+        LOGGER.error('Linting errors found! %s', emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 

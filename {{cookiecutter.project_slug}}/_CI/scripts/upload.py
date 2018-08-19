@@ -32,8 +32,8 @@ LOGGER.addHandler(logging.NullHandler())
 
 
 def upload():
-    LOGGER.info('Executing build step initially')
-    if not build():
+    emojize = build()
+    if not emojize:
         LOGGER.error('Errors caught on building the artifact, bailing out...')
         raise SystemExit(1)
     upload_command = ('twine upload dist/* '
@@ -44,9 +44,9 @@ def upload():
     exit_code = execute_command(upload_command)
     success = not exit_code
     if success:
-        LOGGER.info('Successfully uploaded artifact! ;)')
+        LOGGER.info('Successfully uploaded artifact! %s', emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Errors found in uploading artifact! :(')
+        LOGGER.error('Errors found in uploading artifact! %s', emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 
