@@ -19,7 +19,18 @@ except ImportError:
                          for line in
                          open('dev-requirements.txt').readlines()
                          if line.strip() and not line.startswith('#')]
-from _CI.configuration import BUILD_REQUIRED_FILES
+
+BUILD_REQUIRED_FILES = ('.VERSION',
+                        'LICENSE',
+                        'AUTHORS.rst',
+                        'CONTRIBUTING.rst',
+                        'HISTORY.rst',
+                        'README.rst',
+                        'USAGE.rst',
+                        'Pipfile',
+                        'Pipfile.lock',
+                        'requirements.txt',
+                        'dev-requirements.txt')
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
