@@ -46,5 +46,7 @@ docs:
   image: PATH_TO_RUNNER
   only:
     - tags
+  except:
+    - branches
   script:
     - _CI/scripts/document
