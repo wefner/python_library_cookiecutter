@@ -33,6 +33,12 @@ from subprocess import Popen, PIPE
 from pipenv.project import Project
 from configuration import LOGGERS_TO_DISABLE
 
+# Provides possible python2.7 compatibility
+try:
+    FileNotFoundError
+except NameError:
+    FileNotFoundError = IOError
+
 # This is the main prefix used for logging
 LOGGER_BASENAME = '''_CI.library'''
 LOGGER = logging.getLogger(LOGGER_BASENAME)
@@ -65,15 +71,16 @@ def get_project_root_path():
     return os.path.abspath(os.path.join(current_file_path, '..', '..'))
 
 
-os.chdir(get_project_root_path())
+def activate_virtual_environment():
+    os.chdir(get_project_root_path())
+    activation_script_directory = 'Scripts' if sys.platform == 'win32' else 'bin'
+    activation_file = os.path.join('.venv', activation_script_directory, 'activate_this.py')
+    if is_venv_created():
+        with open(activation_file) as f:
+            exec(f.read(), {'__file__': activation_file})
 
-activation_script_directory = 'Scripts' if sys.platform == 'win32' else 'bin'
-ACTIVATION_FILE = os.path.join('.venv', activation_script_directory, 'activate_this.py')
 
-# After this all execution is done in the virtual environmment
-if is_venv_created():
-    with open(ACTIVATION_FILE) as f:
-        exec(f.read(), {'__file__': ACTIVATION_FILE})
+activate_virtual_environment()
 
 
 try:

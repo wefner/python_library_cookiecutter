@@ -33,4 +33,4 @@ from .library import (execute_command,
                       save_requirements,
                       open_file,
                       bump,
-                      ACTIVATION_FILE)
+                      activate_virtual_environment)
