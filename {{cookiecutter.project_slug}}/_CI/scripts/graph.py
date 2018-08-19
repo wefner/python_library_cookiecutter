@@ -43,9 +43,13 @@ def graph():
     exit_code = execute_command(create_graph_command)
     success = not exit_code
     if success:
-        LOGGER.info('Successfully created graph images %s', emojize(':thumbs_up:'))
+        LOGGER.info('%s Successfully created graph images %s',
+                    emojize(':white_heavy_check_mark:'),
+                    emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Errors in creation of graph images found! %s', emojize(':crying_face:'))
+        LOGGER.error('%s Errors in creation of graph images found! %s',
+                     emojize(':cross_mark:'),
+                     emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 

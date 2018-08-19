@@ -37,9 +37,13 @@ def lint():
     exit_code = execute_command('prospector -DFM')
     success = not exit_code
     if success:
-        LOGGER.info('No linting errors found! %s', emojize(':thumbs_up:'))
+        LOGGER.info('%s No linting errors found! %s',
+                    emojize(':white_heavy_check_mark:'),
+                    emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Linting errors found! %s', emojize(':crying_face:'))
+        LOGGER.error('%s Linting errors found! %s',
+                     emojize(':cross_mark:'),
+                     emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 

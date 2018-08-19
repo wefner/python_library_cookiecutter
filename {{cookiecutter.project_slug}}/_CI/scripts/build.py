@@ -41,9 +41,13 @@ def build():
     # exit_code = execute_command('pipenv lock')
     # success = not exit_code
     # if success:
-    #     LOGGER.info('Successfully created lock file %s', emojize(':thumbs_up:'))
+    #     LOGGER.info('Successfully created lock file %s',
+    #                  emojize(':white_heavy_check_mark:'),
+    #                  emojize(':thumbs_up:'))
     # else:
-    #     LOGGER.error('Errors creating lock file! %s', emojize(':crying_face:'))
+    #     LOGGER.error('%s Errors creating lock file! %s',
+    #                   emojize(':cross_mark:'),
+    #                   emojize(':crying_face:'))
     #     raise SystemExit(1)
     save_requirements()
     for file in BUILD_REQUIRED_FILES:
@@ -51,10 +55,14 @@ def build():
     exit_code = execute_command('python setup.py sdist bdist_egg')
     success = not exit_code
     if success:
-        LOGGER.info('Successfully built artifact %s', emojize(':thumbs_up:'))
+        LOGGER.info('%s Successfully built artifact %s',
+                    emojize(':white_heavy_check_mark:'),
+                    emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Errors building artifact! %s', emojize(':crying_face:'))
-    clean_up([os.path.join('{{cookiecutter.project_slug}}', file)
+        LOGGER.error('%s Errors building artifact! %s',
+                     emojize(':cross_mark:'),
+                     emojize(':crying_face:'))
+    clean_up([os.path.join('pythonlibproject', file)
               for file in BUILD_REQUIRED_FILES])
     return emojize if success else None
 

@@ -45,9 +45,13 @@ def document():
         shutil.move(os.path.join('docs', '_build'), '_build')
         path = os.path.join('_build', 'html', 'index.html')
         open_file(path)
-        LOGGER.info('Successfully built documentation %s', emojize(':thumbs_up:'))
+        LOGGER.info('%s Successfully built documentation %s',
+                    emojize(':white_heavy_check_mark:'),
+                    emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Documentation creation errors found! %s', emojize(':crying_face:'))
+        LOGGER.error('%s Documentation creation errors found! %s',
+                     emojize(':cross_mark:'),
+                     emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 

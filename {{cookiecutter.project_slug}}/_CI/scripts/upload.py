@@ -44,9 +44,13 @@ def upload():
     exit_code = execute_command(upload_command)
     success = not exit_code
     if success:
-        LOGGER.info('Successfully uploaded artifact! %s', emojize(':thumbs_up:'))
+        LOGGER.info('%s Successfully uploaded artifact! %s',
+                    emojize(':white_heavy_check_mark:'),
+                    emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Errors found in uploading artifact! %s', emojize(':crying_face:'))
+        LOGGER.error('%s Errors found in uploading artifact! %s',
+                     emojize(':cross_mark:'),
+                     emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 

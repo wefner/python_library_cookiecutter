@@ -45,9 +45,13 @@ def test():
     # exit_code = execute_command('pipenv lock')
     # success = not exit_code
     # if success:
-    #     LOGGER.info('Successfully locked dependencies %s', emojize(':thumbs_up:'))
+    #     LOGGER.info('Successfully created lock file %s',
+    #                  emojize(':white_heavy_check_mark:'),
+    #                  emojize(':thumbs_up:'))
     # else:
-    #     LOGGER.error('Could not lock dependencies, quiting... %s', emojize(':crying_face:'))
+    #     LOGGER.error('%s Errors creating lock file! %s',
+    #                   emojize(':cross_mark:'),
+    #                   emojize(':crying_face:'))
     #     raise SystemExit(1)
     save_requirements()
     exit_code = execute_command('tox')
@@ -56,9 +60,13 @@ def test():
         open_file(os.path.join('test-output', 'coverage', 'index.html'))
         sleep(0.5)
         open_file(os.path.join('test-output', 'nosetests.html'))
-        LOGGER.info('No testing errors found! %s', emojize(':thumbs_up:'))
+        LOGGER.info('%s No testing errors found! %s',
+                    emojize(':white_heavy_check_mark:'),
+                    emojize(':thumbs_up:'))
     else:
-        LOGGER.error('Testing errors found! %s', emojize(':crying_face:'))
+        LOGGER.error('%s Testing errors found! %s',
+                     emojize(':cross_mark:'),
+                     emojize(':crying_face:'))
     raise SystemExit(exit_code)
 
 

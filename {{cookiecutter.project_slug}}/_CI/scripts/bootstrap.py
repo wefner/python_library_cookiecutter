@@ -41,7 +41,9 @@ def bootstrap():
         if success:
             activate_virtual_environment()
             emojize = get_emojize()
-            LOGGER.info('Successfully created virtual environment, loading it! %s', emojize(':thumbs_up:'))
+            LOGGER.info('%s Successfully created virtual environment and loaded it! %s',
+                        emojize(':white_heavy_check_mark:'),
+                        emojize(':thumbs_up:'))
         else:
             LOGGER.error('Creation of virtual environment failed, cannot continue, '
                          'please clean up .venv directory and try again...')
