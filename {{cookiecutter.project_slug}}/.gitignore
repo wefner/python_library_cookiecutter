@@ -47,8 +47,13 @@ docs/_build
 
 # VirtualEnv
 env
-env*
 .venv
 
 # Mac
 .DS_Store
+
+# Variables file
+.env
+
+# pyenv local python version marker
+.python-version
