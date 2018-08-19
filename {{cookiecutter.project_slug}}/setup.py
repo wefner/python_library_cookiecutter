@@ -19,6 +19,7 @@ except ImportError:
                          for line in
                          open('dev-requirements.txt').readlines()
                          if line.strip() and not line.startswith('#')]
+from _CI.configuration import BUILD_REQUIRED_FILES
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
@@ -58,16 +59,6 @@ setup(
     ],
     test_suite='tests',
     tests_require=test_requirements,
-    data_files=[('', ['.VERSION',
-                      'LICENSE',
-                      'AUTHORS.rst',
-                      'CONTRIBUTING.rst',
-                      'HISTORY.rst',
-                      'README.rst',
-                      'USAGE.rst',
-                      'Pipfile',
-                      'Pipfile.lock',
-                      'requirements.txt',
-                      'dev-requirements.txt']),
+    data_files=[('', BUILD_REQUIRED_FILES),
                 ]
 )
