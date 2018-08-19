@@ -26,7 +26,7 @@ import logging
 from bootstrap import bootstrap
 from gitwrapperlib import Git
 from library import bump
-
+from configuration import BRANCHES_SUPPORTED_FOR_TAG
 
 # This is the main prefix used for logging
 LOGGER_BASENAME = '''_CI.tag'''
@@ -36,8 +36,10 @@ LOGGER.addHandler(logging.NullHandler())
 
 def check_branch():
     git = Git()
-    if not git.get_current_branch() == 'master':
-        print("Tagging is only supported on master, you should not tag a branch, exiting!")
+    if git.get_current_branch() not in BRANCHES_SUPPORTED_FOR_TAG:
+        accepted_branches = ', '.join(BRANCHES_SUPPORTED_FOR_TAG)
+        print("Tagging is only supported on {} "
+              "you should not tag any other branch, exiting!".format(accepted_branches))
         raise SystemExit(1)
 
 

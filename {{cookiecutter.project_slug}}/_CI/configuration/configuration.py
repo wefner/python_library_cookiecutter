@@ -51,3 +51,5 @@ LOGGERS_TO_DISABLE = ['sh.command',
                       'sh.command.process.streamreader',
                       'sh.streamreader',
                       'sh.stream_bufferer']
+
+BRANCHES_SUPPORTED_FOR_TAG = ['master']
