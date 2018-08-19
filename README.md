@@ -48,15 +48,12 @@ The workflow (after one has initialized git on the project which is out of the s
 These actions are supported out of the box by the corresponding scripts under _CI/scripts directory with sane defaults based on best practices.
 The following aliases will be very handy on bash
 
-    $ alias _bootstrap='_CI/scripts/bootstrap'
-    $ alias _lint='_CI/scripts/lint'
-    $ alias _test='_CI/scripts/test'
-    $ alias _build='_CI/scripts/build'
-    $ alias _upload='_CI/scripts/upload'
-    $ alias _document='_CI/scripts/document'
-    $ alias _tag='_CI/scripts/tag'
-    $ alias _graph='_CI/scripts/graph'
-    $ alias _activate='pipenv shell'
+    for command in bootstrap lint test build tag upload document graph
+        do
+            eval "_$command() { if [ -f _CI/scripts/$command.py ]; then ./_CI/scripts/$command.py; else ./_CI/scripts/$command || echo "Command $command not found."; fi }"
+        done
+        
+    alias _activate='source .venv/bin/activate'
     
 The bootstrap script creates a .venv directory inside the project directory hosting the virtual environment. It uses pipenv for that.
 It is called by all other scripts before they do anything. So one could simple start by calling _lint and that would set up everything before it tried to actually lint the project
