@@ -42,13 +42,13 @@ def test():
     emojize = bootstrap()
     clean_up('test-output')
     os.mkdir('test-output')
-    exit_code = execute_command('pipenv lock')
-    success = not exit_code
-    if success:
-        LOGGER.info('Successfully locked dependencies %s', emojize(':thumbs_up:'))
-    else:
-        LOGGER.error('Could not lock dependencies, quiting... %s', emojize(':crying_face:'))
-        raise SystemExit(1)
+    # exit_code = execute_command('pipenv lock')
+    # success = not exit_code
+    # if success:
+    #     LOGGER.info('Successfully locked dependencies %s', emojize(':thumbs_up:'))
+    # else:
+    #     LOGGER.error('Could not lock dependencies, quiting... %s', emojize(':crying_face:'))
+    #     raise SystemExit(1)
     save_requirements()
     exit_code = execute_command('tox')
     success = not exit_code
