@@ -16,7 +16,8 @@ from library import (setup_logging,
                      is_venv_created,
                      execute_command,
                      load_environment_variables,
-                     load_dot_env_file)
+                     load_dot_env_file,
+                     ACTIVATION_FILE)
 
 # This is the main prefix used for logging
 LOGGER_BASENAME = '''_CI.bootstrap'''
@@ -36,7 +37,9 @@ def bootstrap():
         exit_code = execute_command('pipenv install --dev --ignore-pipfile')
         success = not exit_code
         if success:
-            LOGGER.info('Successfully created virtual environment! ;)')
+            LOGGER.info('Successfully created virtual environment, loading it! ;)')
+            with open(ACTIVATION_FILE) as f:
+                exec (f.read(), {'__file__': ACTIVATION_FILE})
         else:
             LOGGER.error('Creation of virtual environment failed, cannot continue, '
                          'please clean up .venv directory and try again...')

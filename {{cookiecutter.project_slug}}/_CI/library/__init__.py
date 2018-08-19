@@ -9,4 +9,5 @@ from .library import (execute_command,
                       clean_up,
                       save_requirements,
                       open_file,
-                      bump)
+                      bump,
+                      ACTIVATION_FILE)
