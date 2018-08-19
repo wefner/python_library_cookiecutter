@@ -38,13 +38,13 @@ LOGGER.addHandler(logging.NullHandler())
 def build():
     emojize = bootstrap()
     clean_up(('build', 'dist'))
-    exit_code = execute_command('pipenv lock')
-    success = not exit_code
-    if success:
-        LOGGER.info('Successfully created lock file %s', emojize(':thumbs_up:'))
-    else:
-        LOGGER.error('Errors creating lock file! %s', emojize(':crying_face:'))
-        raise SystemExit(1)
+    # exit_code = execute_command('pipenv lock')
+    # success = not exit_code
+    # if success:
+    #     LOGGER.info('Successfully created lock file %s', emojize(':thumbs_up:'))
+    # else:
+    #     LOGGER.error('Errors creating lock file! %s', emojize(':crying_face:'))
+    #     raise SystemExit(1)
     save_requirements()
     for file in BUILD_REQUIRED_FILES:
         shutil.copy(file, os.path.join('{{cookiecutter.project_slug}}', file))
