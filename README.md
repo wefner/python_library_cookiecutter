@@ -50,9 +50,9 @@ The following aliases will be very handy on bash
 
     for command in bootstrap lint test build tag upload document graph
         do
-            eval "_$command() { if [ -f _CI/scripts/$command.py ]; then ./_CI/scripts/$command.py; else ./_CI/scripts/$command || echo "Command $command not found."; fi }"
+            eval "_$command() { if [ -f _CI/scripts/$command.py ]; then ./_CI/scripts/$command.py \"\$@\"; elif [ -f _CI/scripts/$command ]; then ./_CI/scripts/$command \"\$@\" ;else echo \"Command ./_CI/scripts/$command.py or ./_CI/scripts/$command not found\" ; fi }"
         done
-        
+    
     alias _activate='source .venv/bin/activate'
     
 The bootstrap script creates a .venv directory inside the project directory hosting the virtual environment. It uses pipenv for that.

@@ -122,6 +122,8 @@ def setup_logging(level):
         logging.getLogger(logger).disabled = True
 
 
+# TODO extend debug logging in the following methods
+
 def load_environment_variables(environment_variables):
     LOGGER.debug('Loading environment variables')
     for key, value in environment_variables.items():
