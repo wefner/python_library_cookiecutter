@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Copyright 2018 Costas Tyfoxylos
@@ -21,6 +21,8 @@
 #  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #  DEALINGS IN THE SOFTWARE.
 #
+
+
 import logging
 import os
 import shutil
@@ -38,17 +40,17 @@ LOGGER.addHandler(logging.NullHandler())
 def build():
     emojize = bootstrap()
     clean_up(('build', 'dist'))
-    # exit_code = execute_command('pipenv lock')
-    # success = not exit_code
-    # if success:
-    #     LOGGER.info('Successfully created lock file %s',
-    #                  emojize(':white_heavy_check_mark:'),
-    #                  emojize(':thumbs_up:'))
-    # else:
-    #     LOGGER.error('%s Errors creating lock file! %s',
-    #                   emojize(':cross_mark:'),
-    #                   emojize(':crying_face:'))
-    #     raise SystemExit(1)
+    exit_code = execute_command('pipenv lock')
+    success = not exit_code
+    if success:
+        LOGGER.info('Successfully created lock file %s %s',
+                     emojize(':white_heavy_check_mark:'),
+                     emojize(':thumbs_up:'))
+    else:
+        LOGGER.error('%s Errors creating lock file! %s',
+                      emojize(':cross_mark:'),
+                      emojize(':crying_face:'))
+        raise SystemExit(1)
     save_requirements()
     for file in BUILD_REQUIRED_FILES:
         shutil.copy(file, os.path.join('{{cookiecutter.project_slug}}', file))
@@ -62,7 +64,7 @@ def build():
         LOGGER.error('%s Errors building artifact! %s',
                      emojize(':cross_mark:'),
                      emojize(':crying_face:'))
-    clean_up([os.path.join('pythonlibproject', file)
+    clean_up([os.path.join('{{cookiecutter.project_slug}}', file)
               for file in BUILD_REQUIRED_FILES])
     return emojize if success else None
 

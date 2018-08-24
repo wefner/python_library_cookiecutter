@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Copyright 2018 Costas Tyfoxylos
@@ -86,7 +86,6 @@ def activate_virtual_environment():
 # After this everything is executed inside a virtual environment
 if not is_venv_active():
     activate_virtual_environment()
-
 
 try:
     import coloredlogs

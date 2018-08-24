@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Copyright 2018 Costas Tyfoxylos
@@ -21,6 +21,8 @@
 #  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #  DEALINGS IN THE SOFTWARE.
 #
+
+
 import logging
 from bootstrap import bootstrap
 from library import execute_command

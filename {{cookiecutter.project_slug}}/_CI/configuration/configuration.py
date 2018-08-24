@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Copyright 2018 Costas Tyfoxylos
